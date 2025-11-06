@@ -1,0 +1,35 @@
+<div class="">
+  <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+    <!-- <div class="form-group"> -->
+    <span>
+      <label for="email">Email</label>
+      <input class="form-control" id="email" name="email" type="email" email required ngModel pInputText
+        placeholder="Email" />
+      <div *ngIf="authForm.controls['email']?.invalid && (authForm.controls['email']?.touched || submitted)">
+        <small *ngIf="authForm.controls['email']?.errors?.['required']">Email is required.</small>
+      </div>
+    </span>
+    <span>
+      <label for="password">Password</label>
+      <input class="form-control" id="password" name="password" type="password" required ngModel pInputText
+        placeholder="Password" />
+      <div *ngIf="authForm.controls['password']?.invalid && (authForm.controls['password']?.touched || submitted)">
+        <small *ngIf="authForm.controls['password']?.errors?.['required']">Password is required.</small>
+      </div>
+    </span>
+    <small *ngIf="this.authError">{{ this.authError["error"] }}</small>
+    <!-- <p-button class="btn" styleClass=" p-button-success" label="Log In" type="submit" ></p-button> -->
+    <!-- </div> -->
+    <button class="btn" type="submit">Log In</button>
+  </form>
+  <div class="admin-email">
+    <button (click)="toggleDefaultEmail()">
+      <span *ngIf="isShowEmail" class="material-symbols-outlined">arrow_drop_up</span>
+      <span *ngIf="!isShowEmail" class="material-symbols-outlined">arrow_drop_down</span>
+    </button>
+    <div *ngIf="isShowEmail">
+      <p>Email: admin@mail.com</p>
+      <p>Password: 123123</p>
+    </div>
+  </div>
+</div>
